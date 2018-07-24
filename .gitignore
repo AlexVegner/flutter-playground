@@ -1,0 +1,16 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+*.lock
+
+build/
+
+.flutter-plugins
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
