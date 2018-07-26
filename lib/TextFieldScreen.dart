@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_playground/ScreenWidget.dart';
 
-class TextFieldScreen extends StatefulWidget {
+class TextFieldScreen extends ScreenWidget {
   @override
   State createState() => _TextFieldScreen();
+
+  @override
+  String get title => 'TextField';
 }
 
 class _TextFieldScreen extends State<TextFieldScreen> {
@@ -24,7 +26,7 @@ class _TextFieldScreen extends State<TextFieldScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TextField Screen'),
+        title: Text('${widget.title} Screen'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

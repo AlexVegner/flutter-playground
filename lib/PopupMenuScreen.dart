@@ -1,108 +1,77 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_playground/ScreenWidget.dart';
 
-class ButtonsScreen extends StatefulWidget {
+class PopupMenuScreen extends ScreenWidget {
+
   @override
-  State createState() => _StateButtonsScreen();
+  State createState() => _StatePopupMenuScreen();
+
+  @override
+  String get title => 'PopupMenu';
 }
 
-class _StateButtonsScreen extends State<ButtonsScreen> {
+enum Animals {Dog, Cat, Bird, Lizard, Fish}
 
-  String _value = 'Hello world';
-  var _clickCounter = 1;
+class _StatePopupMenuScreen extends State<PopupMenuScreen> {
 
-  void _onPressed(String value) {
+  Animals _selected = Animals.Cat;
+  String _value = 'Make a selection';
+
+  List<PopupMenuItem<Animals>> _items = List();
+
+  @override
+  void initState() {
+    super.initState();
+    for (var animal in Animals.values) {
+      _items.add(PopupMenuItem<Animals>(
+        child: Text(_getDisplay(animal)),
+        value: animal,
+      ));
+    }
+  }
+  
+  void _onSelectAnimal(Animals animal) {
     setState(() {
-      _clickCounter = _clickCounter + 1;
-      _value = '$value ${DateTime.now().toString()}';
+      _selected = animal;
+      _value = 'You selected ${_getDisplay(animal)}';
     });
   }
-
-  void _increment() {
-    setState(() {
-      _clickCounter++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      _clickCounter--;
-    });
-  }
-
-  var _floatingText = '';
-
-  void _floatingAction() =>
-      setState(() => _floatingText = DateTime.now().toString());
-
-  var _actionCounter = 1;
-
-  void _actionAdd() => setState(() => _actionCounter++);
-
-  void _actionRemove() => setState(() => _actionCounter--);
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('Buttons Screen $_actionCounter'),
-        backgroundColor: Colors.indigo,
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.add), onPressed: _actionAdd),
-          IconButton(icon: Icon(Icons.remove), onPressed: _actionRemove),
-        ],
+        title: Text('${widget.title} Screen'),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _floatingAction,
-        child: Icon(Icons.timer),
-        mini: false,
-      ),
-      persistentFooterButtons: <Widget>[
-        IconButton(icon: Icon(Icons.add), onPressed: _actionAdd),
-        IconButton(icon: Icon(Icons.remove), onPressed: _actionRemove),
-        IconButton(
-            icon: Icon(
-              Icons.timer,
-              color: Colors.blueAccent,
-            ),
-            onPressed: _floatingAction),
-      ],
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: Center(
           child: Column(
             children: <Widget>[
-              Text('$_value $_clickCounter times'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RaisedButton(
-                  onPressed: () => _onPressed("Last update -> "),
-                  child: Text('Click'),
-                ),
+              Container(
+                padding: EdgeInsets.all(5.0),
+                child: Text(_value),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FlatButton(
-                  onPressed: () => _onPressed("Last update -> "),
-                  child: Text('Click'),
-                ),
+              PopupMenuButton<Animals>(
+                child: Icon(Icons.input),
+                initialValue: _selected,
+                onSelected: _onSelectAnimal,
+                itemBuilder: (BuildContext context) {
+                  return _items;
+                },
               ),
-              IconButton(
-                onPressed: _increment,
-                icon: Icon(Icons.add),
-              ),
-              IconButton(
-                onPressed: _decrement,
-                icon: Icon(Icons.remove),
-              ),
-              Text(_floatingText),
             ],
           ),
         ),
       ),
     );
   }
-}
 
+  String _getDisplay(Animals animal) {
+    //int index = animal.toString().indexOf('.') + 1;
+    //return animal.toString().substring(index);
+    return animal.toString();
+  }
+}

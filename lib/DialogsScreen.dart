@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter_playground/ScreenWidget.dart';
+
 enum Answers { YES, NO, MAYBE }
 
-class DialogsScreen extends StatefulWidget {
+class DialogsScreen extends ScreenWidget {
   @override
   State createState() => _StateDialogsScreen();
+
+  // TODO: implement title
+  @override
+  String get title => 'Dialogs';
 }
 
 class _StateDialogsScreen extends State<DialogsScreen> {
@@ -133,7 +139,7 @@ class _StateDialogsScreen extends State<DialogsScreen> {
     return Scaffold(
       key: _scaffoldStateKey,
       appBar: AppBar(
-        title: Text('Checkbox Screen'),
+        title: Text('${widget.title} Screen'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

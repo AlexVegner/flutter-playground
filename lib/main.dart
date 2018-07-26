@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/ButtonsScreen.dart';
 import 'package:flutter_playground/CheckboxScreen.dart';
 import 'package:flutter_playground/DialogsScreen.dart';
+import 'package:flutter_playground/PopupMenuScreen.dart';
+import 'package:flutter_playground/ProgressScreen.dart';
 import 'package:flutter_playground/RadiosScreen.dart';
+import 'package:flutter_playground/RemoveItemsScreen.dart';
+import 'package:flutter_playground/ScreenWidget.dart';
 import 'package:flutter_playground/SliderScreen.dart';
 import 'package:flutter_playground/SwitchScreen.dart';
 import 'package:flutter_playground/TextFieldScreen.dart';
+import 'package:flutter_playground/TooltipScreen.dart';
 import 'dart:async';
 import 'ListScreen.dart';
 
@@ -42,23 +47,27 @@ class _State extends State<MyApp> {
         icon: Icon(Icons.message), title: Text('Message')));
   }
 
-  Widget _buildRouteButton(String title, WidgetBuilder routeBuilder) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: FlatButton(
-            color: Colors.blue.shade50,
-            splashColor: Colors.blue.shade800,
-            highlightColor: Colors.blue.shade300,
-            child: Text(title),
-            onPressed: () {
-              Navigator.push(context,  MaterialPageRoute(
-                builder: routeBuilder,
-              ));
-            },
+  Widget _buildRouteButton(ScreenWidget screen) {
+    //screen.
+    return Padding(
+      padding: EdgeInsets.only(bottom: 15.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              color: Colors.blue.shade50,
+              splashColor: Colors.blue.shade800,
+              highlightColor: Colors.blue.shade300,
+              child: Text(screen.title),
+              onPressed: () {
+                Navigator.push(context,  MaterialPageRoute(
+                  builder: (BuildContext context) => screen,
+                ));
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -83,29 +92,28 @@ class _State extends State<MyApp> {
       drawer: Drawer(
         child: Container(
           padding: EdgeInsets.all(32.0),
-          child: Column(
-            children: <Widget>[
-              _buildRouteButton('Show ListView', (BuildContext context) => ListScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show Checkbox', (BuildContext context) => CheckboxScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show Switch', (BuildContext context) => SwitchScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show Radios', (BuildContext context) => RadiosScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show Dialogs', (BuildContext context) => DialogsScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show Slider', (BuildContext context) => SliderScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show Buttons', (BuildContext context) => ButtonsScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              _buildRouteButton('Show TextField', (BuildContext context) => TextFieldScreen()),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              RaisedButton(
-                onPressed: () => Navigator.pop(context),
-                child: Icon(Icons.close),
-              )
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _buildRouteButton(PopupMenuScreen()),
+                _buildRouteButton(ProgressScreen()),
+                _buildRouteButton(RemoveItemsScreen()),
+                _buildRouteButton(TooltipScreen()),
+                _buildRouteButton(ListScreen()),
+                _buildRouteButton(CheckboxScreen()),
+                _buildRouteButton(SwitchScreen()),
+                _buildRouteButton(RadiosScreen()),
+                _buildRouteButton(DialogsScreen()),
+                _buildRouteButton(SliderScreen()),
+                _buildRouteButton(ButtonsScreen()),
+                _buildRouteButton(TextFieldScreen()),
+                _buildRouteButton(TextFieldScreen()),
+                RaisedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Icon(Icons.close),
+                )
+              ],
+            ),
           ),
         ),
       ),

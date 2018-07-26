@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/ScreenWidget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class CheckboxScreen extends StatefulWidget {
+class CheckboxScreen extends ScreenWidget {
   @override
   State createState() => _StateCheckboxScreen();
+
+  @override
+  String get title => 'Checkbox';
 }
 
 class _StateCheckboxScreen extends State<CheckboxScreen> {
@@ -30,7 +34,7 @@ class _StateCheckboxScreen extends State<CheckboxScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Checkbox Screen'),
+        title: Text('${widget.title} Screen'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

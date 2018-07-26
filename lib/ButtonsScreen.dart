@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_playground/ScreenWidget.dart';
 
-class ButtonsScreen extends StatefulWidget {
+class ButtonsScreen extends ScreenWidget {
   @override
   State createState() => _StateButtonsScreen();
+
+  @override
+  String get title => 'Buttons';
 }
 
 class _StateButtonsScreen extends State<ButtonsScreen> {
@@ -47,7 +49,7 @@ class _StateButtonsScreen extends State<ButtonsScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('Buttons Screen $_actionCounter'),
+        title: Text('${widget.title} Screen $_actionCounter'),
         backgroundColor: Colors.indigo,
         actions: <Widget>[
           IconButton(icon: Icon(Icons.add), onPressed: _actionAdd),

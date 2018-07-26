@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/ScreenWidget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class ListScreen extends StatefulWidget {
+class ListScreen extends ScreenWidget {
   @override
   State createState() => _StateListScreen();
+
+  @override
+  String get title => 'List';
 }
 
 class _StateListScreen extends State<ListScreen> {
@@ -34,7 +38,7 @@ class _StateListScreen extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ListView Screen'),
+        title: Text('${widget.title} Screen'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

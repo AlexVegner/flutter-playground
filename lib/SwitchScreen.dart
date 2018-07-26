@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_playground/ScreenWidget.dart';
 
-class SwitchScreen extends StatefulWidget {
+class SwitchScreen extends ScreenWidget {
   @override
   State createState() => _StateSwitchScreen();
+
+  @override
+  String get title => 'Switch';
 }
 
 class _StateSwitchScreen extends State<SwitchScreen> {
@@ -19,7 +21,7 @@ class _StateSwitchScreen extends State<SwitchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Switch Screen'),
+        title: Text('${widget.title} Screen'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
