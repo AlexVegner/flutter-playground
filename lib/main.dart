@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/ButtonsScreen.dart';
 import 'package:flutter_playground/CheckboxScreen.dart';
 import 'package:flutter_playground/DialogsScreen.dart';
+import 'package:flutter_playground/ExpansionPanelScreen.dart';
 import 'package:flutter_playground/PopupMenuScreen.dart';
 import 'package:flutter_playground/ProgressScreen.dart';
 import 'package:flutter_playground/RadiosScreen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_playground/ScreenWidget.dart';
 import 'package:flutter_playground/SliderScreen.dart';
 import 'package:flutter_playground/SwitchScreen.dart';
 import 'package:flutter_playground/TextFieldScreen.dart';
+import 'package:flutter_playground/TimerScreen.dart';
 import 'package:flutter_playground/TooltipScreen.dart';
 import 'dart:async';
 import 'ListScreen.dart';
@@ -95,6 +97,8 @@ class _State extends State<MyApp> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                _buildRouteButton(ExpansionPanelScreen()),
+                _buildRouteButton(TimerScreen()),
                 _buildRouteButton(PopupMenuScreen()),
                 _buildRouteButton(ProgressScreen()),
                 _buildRouteButton(RemoveItemsScreen()),
