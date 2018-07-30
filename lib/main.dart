@@ -9,6 +9,7 @@ import 'package:flutter_playground/RemoveItemsScreen.dart';
 import 'package:flutter_playground/ScreenWidget.dart';
 import 'package:flutter_playground/SliderScreen.dart';
 import 'package:flutter_playground/SwitchScreen.dart';
+import 'package:flutter_playground/TabBarViewScreen.dart';
 import 'package:flutter_playground/TextFieldScreen.dart';
 import 'package:flutter_playground/TooltipScreen.dart';
 import 'dart:async';
@@ -95,6 +96,7 @@ class _State extends State<MyApp> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                _buildRouteButton(TabBarViewScreen()),
                 _buildRouteButton(PopupMenuScreen()),
                 _buildRouteButton(ProgressScreen()),
                 _buildRouteButton(RemoveItemsScreen()),
