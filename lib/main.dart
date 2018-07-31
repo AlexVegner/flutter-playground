@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/ButtonsScreen.dart';
+import 'package:flutter_playground/CardScreen.dart';
 import 'package:flutter_playground/CheckboxScreen.dart';
 import 'package:flutter_playground/DialogsScreen.dart';
 import 'package:flutter_playground/ExpansionPanelScreen.dart';
+import 'package:flutter_playground/GridViewScreen.dart';
 import 'package:flutter_playground/PopupMenuScreen.dart';
 import 'package:flutter_playground/ProgressScreen.dart';
 import 'package:flutter_playground/RadiosScreen.dart';
 import 'package:flutter_playground/RemoveItemsScreen.dart';
 import 'package:flutter_playground/ScreenWidget.dart';
 import 'package:flutter_playground/SliderScreen.dart';
+import 'package:flutter_playground/StepperScreen.dart';
 import 'package:flutter_playground/SwitchScreen.dart';
 import 'package:flutter_playground/TabBarViewScreen.dart';
 import 'package:flutter_playground/TextFieldScreen.dart';
@@ -74,6 +77,41 @@ class _State extends State<MyApp> {
     );
   }
 
+  Widget _renderFeatures() {
+    return Container(
+      padding: EdgeInsets.all(32.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildRouteButton(GridViewScreen()),
+            _buildRouteButton(StepperScreen()),
+            _buildRouteButton(ExpansionPanelScreen()),
+            _buildRouteButton(TimerScreen()),
+            _buildRouteButton(TabBarViewScreen()),
+            _buildRouteButton(PopupMenuScreen()),
+            _buildRouteButton(ProgressScreen()),
+            _buildRouteButton(RemoveItemsScreen()),
+            _buildRouteButton(TooltipScreen()),
+            _buildRouteButton(ListScreen()),
+            _buildRouteButton(CardScreen()),
+            _buildRouteButton(CheckboxScreen()),
+            _buildRouteButton(SwitchScreen()),
+            _buildRouteButton(RadiosScreen()),
+            _buildRouteButton(DialogsScreen()),
+            _buildRouteButton(SliderScreen()),
+            _buildRouteButton(ButtonsScreen()),
+            _buildRouteButton(TextFieldScreen()),
+            _buildRouteButton(TextFieldScreen()),
+            RaisedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Icon(Icons.close),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -93,57 +131,11 @@ class _State extends State<MyApp> {
         },
       ),
       drawer: Drawer(
-        child: Container(
-          padding: EdgeInsets.all(32.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _buildRouteButton(ExpansionPanelScreen()),
-                _buildRouteButton(TimerScreen()),
-                _buildRouteButton(TabBarViewScreen()),
-                _buildRouteButton(PopupMenuScreen()),
-                _buildRouteButton(ProgressScreen()),
-                _buildRouteButton(RemoveItemsScreen()),
-                _buildRouteButton(TooltipScreen()),
-                _buildRouteButton(ListScreen()),
-                _buildRouteButton(CheckboxScreen()),
-                _buildRouteButton(SwitchScreen()),
-                _buildRouteButton(RadiosScreen()),
-                _buildRouteButton(DialogsScreen()),
-                _buildRouteButton(SliderScreen()),
-                _buildRouteButton(ButtonsScreen()),
-                _buildRouteButton(TextFieldScreen()),
-                _buildRouteButton(TextFieldScreen()),
-                RaisedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Icon(Icons.close),
-                )
-              ],
-            ),
-          ),
-        ),
+        child: _renderFeatures(),
       ),
       body: Container(
-        padding: EdgeInsets.all(32.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Card(
-                    child: Container(
-                  padding: EdgeInsets.all(32.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text('Text1'),
-                      Text('Text2'),
-                    ],
-                  ),
-                )),
-                Text(_bottomValue),
-              ],
-            ),
-          ),
-        ),
+        padding: EdgeInsets.all(2.0),
+        child: _renderFeatures(),
       ),
     );
   }
