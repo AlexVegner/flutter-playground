@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/ScreenWidget.dart';
-import 'package:flutter_playground/timer/TimeCounter.dart';
+import 'package:flutter_playground/auth/Authenticator.dart';
 
-class TimerScreen extends ScreenWidget {
+class AuthScreen extends ScreenWidget {
   @override
-  State createState() => _StateTimerScreen();
+  State createState() => _StateAuthScreen();
 
   @override
-  String get title => 'Timer';
+  String get title => 'Auth';
 
 }
 
-class _StateTimerScreen extends State<TimerScreen> {
+class _StateAuthScreen extends State<AuthScreen> {
+
+
+  bool _isAuthenticated;
+
+  void _onAuthenticated(bool value) {
+    setState(() => _isAuthenticated = value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,8 @@ class _StateTimerScreen extends State<TimerScreen> {
         child: Center(
           child: Column(
             children: <Widget>[
-              TimeCounter()
+              new Authenticator(onAuthenticated: _onAuthenticated,),
+              new Text('Authenticated: ${_isAuthenticated}'),
             ],
           ),
         ),
