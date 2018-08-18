@@ -27,24 +27,66 @@ import 'package:flutter_playground/screens/SecondScreen.dart';
 import 'package:flutter_playground/screens/ThirdScreen.dart';
 import 'dart:async';
 import 'ListScreen.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_playground/state/actions.dart';
+
+//Actions for redux, these are the things we do
+
+//The reducer will take the action and create a new state
+int reducer(int state, dynamic action) {
+  switch (action) {
+    case Actions.Increment:
+      state++;
+      break;
+    case Actions.Decrement:
+      state--;
+      break;
+  }
+
+  print('reducer: ${action.toString()}');
+
+  return state;
+}
+
+loggingMiddleware(Store<int> store, action, NextDispatcher next) {
+  print('${new DateTime.now()}: $action');
+
+  next(action);
+}
+
 
 void main() {
-  runApp(MyApp());
+  final store = new Store<int>(
+    reducer,
+    initialState: 0,
+    middleware: [loggingMiddleware],
+  );
+  runApp(MyApp(
+    store: store,
+  ));
 }
 
 class MyApp extends StatelessWidget {
+
+  MyApp({Key key, this.store}) : super(key: key);
+  final Store<int> store;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Navigation',
-      routes: <String, WidgetBuilder>{
-        //All available pages
-        '/MyApp': (BuildContext context) => new MyHome(),
-        '/Home': (BuildContext context) => new HomeScreen(),
-        '/Second': (BuildContext context) => new SecondScreen(),
-        '/Third': (BuildContext context) => new ThirdScreen(),
-      },
-      home: MyHome(),
+    return StoreProvider<int>(
+      store: store,
+      child: MaterialApp(
+        title: 'Navigation',
+        routes: <String, WidgetBuilder>{
+          //All available pages
+          '/MyApp': (BuildContext context) => new MyHome(),
+          '/Home': (BuildContext context) => new HomeScreen(),
+          '/Second': (BuildContext context) => new SecondScreen(''),
+          '/Third': (BuildContext context) => new ThirdScreen(),
+        },
+        home: MyHome(),
+      ),
     );
   }
 }
