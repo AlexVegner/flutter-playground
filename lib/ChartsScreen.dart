@@ -12,7 +12,6 @@ class ChartsScreen extends ScreenWidget {
 
 }
 
-
 class Sales {
   String year;
   int sales;
@@ -48,6 +47,7 @@ class _StateChartsScreen extends State<ChartsScreen> {
 
   @override
   void initState() {
+    super.initState();
     _makeData();
   }
 

@@ -8,6 +8,8 @@ import 'package:flutter_playground/CheckboxScreen.dart';
 import 'package:flutter_playground/DialogsScreen.dart';
 import 'package:flutter_playground/ExpansionPanelScreen.dart';
 import 'package:flutter_playground/GridViewScreen.dart';
+import 'package:flutter_playground/IcoMoonScreen.dart';
+import 'package:flutter_playground/ImageAssetScreen.dart';
 import 'package:flutter_playground/PieChartScreen.dart';
 import 'package:flutter_playground/PopupMenuScreen.dart';
 import 'package:flutter_playground/ProgressScreen.dart';
@@ -18,6 +20,7 @@ import 'package:flutter_playground/SliderScreen.dart';
 import 'package:flutter_playground/StepperScreen.dart';
 import 'package:flutter_playground/SwitchScreen.dart';
 import 'package:flutter_playground/TabBarViewScreen.dart';
+import 'package:flutter_playground/TestScreen.dart';
 import 'package:flutter_playground/TextFieldScreen.dart';
 import 'package:flutter_playground/ClockScreen.dart';
 import 'package:flutter_playground/TimerScreen.dart';
@@ -167,6 +170,9 @@ class _State extends State<MyHome> {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            _buildRouteButton(IcoMoonScreen()),
+            _buildRouteButton(ImageAssetScreen()),
+            _buildRouteButton(TestScreen()),
             _buildHoneNamedRoute('/Home', 'Named navigation'),
             _buildRouteButton(AuthScreen()),
             _buildRouteButton(TimerScreen()),
